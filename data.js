@@ -166,10 +166,20 @@ export const links = [
 export const shop = [
   {
     id: 1,
-    img: './assets/xx99-marki1.png',
+    img: require('./assets/xx99-marki1.png'),
     url: '/headphones',
     name: 'headphones',
   },
-  { id: 2, img: './assets/zx9.png', url: '/speakers', name: 'speakers' },
-  { id: 3, img: './assets/yx1.png', url: '/earphones', name: 'earphones' },
+  {
+    id: 2,
+    img: require('./assets/zx9.png'),
+    url: '/speakers',
+    name: 'speakers',
+  },
+  {
+    id: 3,
+    img: require('./assets/yx1.png'),
+    url: '/earphones',
+    name: 'earphones',
+  },
 ]

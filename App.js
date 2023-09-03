@@ -8,10 +8,13 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native'
 import { ThemeProvider } from 'styled-components/native'
 import styled from 'styled-components/native'
 import { theme } from './src/styleGuide'
+import { Shop } from './src/components/Shop'
+import { shop } from './data'
 
 export default function App() {
   return (
@@ -38,6 +41,11 @@ export default function App() {
                 </Button>
               </Content>
             </BackgroundWrapper>
+            <ShopContainer>
+              {shop.map((item) => {
+                return <Shop key={item.id} {...item} />
+              })}
+            </ShopContainer>
           </ScrollView>
         </Hero>
       </SafeArea>
@@ -103,4 +111,13 @@ const ButtonText = styled(Text)`
 `
 const BackgroundWrapper = styled(ImageBackground)`
   height: 500px;
+`
+const ShopContainer = styled(View)`
+  flex: 1;
+  gap: ${(props) => props.theme.space[5]};
+  margin: 0 auto;
+  align-items: center;
+  margin: ${(props) => props.theme.space[4]};
+  margin-top: 100px;
+  justify-content: center;
 `
