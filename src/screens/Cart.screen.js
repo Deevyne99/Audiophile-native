@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export const Products = () => {
+export const Cart = () => {
   return (
     <View>
-      <Text>Products page</Text>
+      <Text>Cart page</Text>
     </View>
   )
 }

@@ -61,6 +61,21 @@ export const Home = () => {
               <ButtonText>see product</ButtonText>
             </ButtonBlack>
           </Wrapper>
+          <BackgroundWrapper
+            resizeMode='cover'
+            source={require('../../assets/mobile.png')}
+          >
+            <Content>
+              <ButtonBlack>
+                <ButtonText>see product</ButtonText>
+              </ButtonBlack>
+            </Content>
+          </BackgroundWrapper>
+          <ImageDesc>
+            <ImageWrap
+              source={require('../../assets/earpod-mobile.png')}
+            ></ImageWrap>
+          </ImageDesc>
         </ShopContainer>
       </ScrollView>
     </Hero>
@@ -122,9 +137,7 @@ const Description = styled(Text)`
   text-align: center;
 `
 const DescripText = styled(Text)`
-  /* margin-bottom: 60px; */
   color: #fff;
-  /* opacity: 0.6; */
   width: 350px;
   text-align: center;
 `
@@ -147,6 +160,8 @@ const ButtonText = styled(Text)`
 `
 const BackgroundWrapper = styled(ImageBackground)`
   height: 500px;
+  width: 100%;
+  border-radius: 8px;
 `
 const ShopContainer = styled(View)`
   /* flex: 1; */
@@ -196,9 +211,18 @@ const DivWrapper = styled(View)`
   border-right-style: none;
   border-bottom: 1px solid #fff;
   border-radius: 200px;
-
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   /* margin-top: 20px; */
+`
+
+const ImageDesc = styled(View)`
+  height: 300px;
+  width: 100%;
+  border-radius: 8px;
+`
+const ImageWrap = styled(Image)`
+  height: 100%;
+  width: 100%;
 `
