@@ -20,6 +20,7 @@ export const Shop = ({ name, img }) => {
 
 const Card = styled(View)`
   background-color: ${(props) => props.theme.colors.gray};
+
   height: 150px;
   width: 300px;
   border-radius: 8px;
