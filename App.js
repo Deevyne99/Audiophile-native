@@ -16,14 +16,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <ThemeProvider theme={theme}>
-        <Tab.Navigator>
-          <Tab.Screen name='Home' component={Home} />
-          <Tab.Screen name='Products' component={Products} />
-          <Tab.Screen name={`${'divine'}`} component={Product} />
-          <Tab.Screen name='Cart' component={Cart} />
-          <Tab.Screen name='Checkout ' component={CheckOut} />
-          {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
-        </Tab.Navigator>
+        <SafeArea>
+          <Tab.Navigator>
+            <Tab.Screen name='Home' component={Home} />
+            <Tab.Screen name='Products' component={Products} />
+            <Tab.Screen name={`${'divine'}`} component={Product} />
+            <Tab.Screen name='Cart' component={Cart} />
+            <Tab.Screen name='Checkout ' component={CheckOut} />
+            {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
+          </Tab.Navigator>
+        </SafeArea>
       </ThemeProvider>
     </NavigationContainer>
   )
