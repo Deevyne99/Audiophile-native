@@ -2,21 +2,16 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styled } from 'styled-components/native'
 // import img from '../../assets/earpod-mobile.png'
-export const SingleProduct = () => {
+export const SingleProduct = ({ item }) => {
+  const { name, description, img } = item
   return (
     <ProductContainer>
       <ImageContainer>
-        <ProductImage
-          source={require('../../assets/earpod-mobile.png')}
-        ></ProductImage>
+        <ProductImage source={img}></ProductImage>
       </ImageContainer>
       <SmallText>NEW PRODUCT</SmallText>
-      <NameText>XX99 Mark II Headphones</NameText>
-      <DescText>
-        The new XX99 Mark II headphones is the pinnacle of pristine audio. It
-        redefines your premium headphone experience by reproducing the balanced
-        depth and precision of studio-quality sound.
-      </DescText>
+      <NameText>{name}</NameText>
+      <DescText>{description}</DescText>
       <Button>
         <ButtonLabel>see Product</ButtonLabel>
       </Button>
@@ -33,12 +28,14 @@ const SmallText = styled(Text)`
   color: ${(props) => props.theme.colors.orange};
   font-size: 10px;
 `
-const NameText = styled(Text)`
+export const NameText = styled(Text)`
   margin-top: ${(props) => props.theme.sizes[1]};
   font-weight: bold;
   font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
 `
-const DescText = styled(Text)`
+export const DescText = styled(Text)`
   opacity: 0.5;
   line-height: 25px;
   text-align: center;

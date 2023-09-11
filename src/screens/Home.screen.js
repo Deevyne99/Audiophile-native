@@ -14,13 +14,15 @@ import {
 } from 'react-native'
 import { Shop } from '../components/Shop'
 import { shop } from '../../data'
+import { UserComponent } from '../components/User'
+
 export const Home = () => {
   return (
     <Hero>
       <ScrollView>
-        <Header>
+        {/* <Header>
           <Title>audiophile</Title>
-        </Header>
+        </Header> */}
         <BackgroundWrapper
           resizeMode='cover'
           source={require('../../assets/earphone-bg1.png')}
@@ -39,7 +41,7 @@ export const Home = () => {
         </BackgroundWrapper>
         <ShopContainer>
           {shop.map((item) => {
-            return <Shop key={item.id} {...item} />
+            return <Shop key={item.id} item={item} />
           })}
           <Wrapper>
             <DivWrapper>
@@ -75,7 +77,18 @@ export const Home = () => {
             <ImageWrap
               source={require('../../assets/earpod-mobile.png')}
             ></ImageWrap>
+            <ProductContainer>
+              <Text
+                style={{ color: 'black', fontWeight: 'bold', fontSize: 24 }}
+              >
+                YX1 EARPHONES
+              </Text>
+              <ButtonGray>
+                <ButtonGrayText>see product</ButtonGrayText>
+              </ButtonGray>
+            </ProductContainer>
           </ImageDesc>
+          <UserComponent />
         </ShopContainer>
       </ScrollView>
     </Hero>
@@ -86,10 +99,28 @@ const SafeArea = styled(SafeAreaView)`
   ${StatusBar.currentHeight && `margin-top:${StatusBar.currentHeight}px`};
   /* background-color: blue; */
 `
+const ProductContainer = styled(View)`
+  /* flex: 1; */
+  background-color: ${(props) => props.theme.colors.gray};
+  margin-top: ${(props) => props.theme.sizes[2]};
+  height: 200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`
+const ButtonGray = styled(TouchableOpacity)`
+  margin-top: ${(props) => props.theme.sizes[2]};
+  padding: 10px;
+  border: 1px solid #000;
+`
+const ButtonGrayText = styled(Text)`
+  text-transform: uppercase;
+`
 const Hero = styled(View)`
   /* flex: 1; */
   background-color: #fff;
 `
+
 const Header = styled(View)`
   height: 80px;
   background-color: #040404;
@@ -163,7 +194,7 @@ const BackgroundWrapper = styled(ImageBackground)`
   width: 100%;
   border-radius: 8px;
 `
-const ShopContainer = styled(View)`
+export const ShopContainer = styled(View)`
   /* flex: 1; */
 
   gap: ${(props) => props.theme.space[5]};
@@ -218,11 +249,11 @@ const DivWrapper = styled(View)`
 `
 
 const ImageDesc = styled(View)`
-  height: 300px;
+  /* height: 700px; */
   width: 100%;
   border-radius: 8px;
 `
 const ImageWrap = styled(Image)`
-  height: 100%;
+  height: 300px;
   width: 100%;
 `

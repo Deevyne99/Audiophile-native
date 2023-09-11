@@ -6,11 +6,11 @@ export const products = [
     Category: 'headphones',
     description:
       'The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.',
-    img: './assets/xx99-marki2.png',
+    img: require('./assets/xx99-marki2.png'),
     images: {
-      image1: './assets/xx99-user-1.png',
-      image2: './assets/xx99-user-2.png',
-      image3: './assets/xx99-user-3.png',
+      image1: require('./assets/xx99-user-1.png'),
+      image2: require('./assets/xx99-user-2.png'),
+      image3: require('./assets/xx99-user-3.png'),
     },
     price: 2999,
     text: 'Featuring a genuine leather head strap and premium earcups, these headphones deliver superior comfort for those who like to enjoy endless listening. It includes intuitive controls designed for any situation. Whether you’re taking a business call or just in your own personal space, the auto on/off and pause features ensure that you’ll never miss a beat.',
@@ -33,11 +33,11 @@ export const products = [
     Category: 'headphones',
     description:
       'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.',
-    img: './assets/xx99-marki1.png',
+    img: require('./assets/xx99-marki1.png'),
     images: {
-      image1: './assets/mark1-user1.png',
-      image2: './assets/mark2-user2.png',
-      image3: './assets/mark3-user3.png',
+      image1: require('./assets/mark1-user1.png'),
+      image2: require('./assets/mark2-user2.png'),
+      image3: require('./assets/mark3-user3.png'),
     },
     price: 1750,
     text: 'As the headphones all others are measured against, the XX99 Mark I demonstrates over five decades of audio expertise, redefining the critical listening experience. This pair of closed-back headphones are made of industrial, aerospace-grade materials to emphasize durability at a relatively light weight of 11 oz.',
@@ -58,11 +58,11 @@ export const products = [
     stripe: 'prod_OSvOPX3bLwcVA9',
     description:
       'Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.',
-    img: './assest/xx59.png',
+    img: require('./assets/xx59.png'),
     images: {
-      image1: './assets/xx59-user1.png',
-      image2: './assets/xx59-user2.png',
-      image3: './assets/xx59-user3.png',
+      image1: require('./assets/xx59-user1.png'),
+      image2: require('./assets/xx59-user2.png'),
+      image3: require('./assets/xx59-user3.png'),
     },
     price: 899,
     text: 'These headphones have been created from durable, high-quality materials tough enough to take anywhere. Its compact folding design fuses comfort and minimalist style making it perfect for travel. Flawless transmission is assured by the latest wireless technology engineered for audio synchronization with videos.',
@@ -83,10 +83,10 @@ export const products = [
     stripe: 'prod_OSvPItyv0oKCIi',
     description:
       'Upgrade your sound system with the all new ZX9 active speaker. It’s a bookshelf speaker system that offers truly wireless connectivity -- creating new possibilities for more pleasing and practical audio setups.',
-    img: './assets/zx9.png',
+    img: require('./assets/zx9.png'),
     images: {
-      image1: './assets/zx9-user1.png',
-      image2: './assets/zx9-user2.png',
+      image1: require('./assets/zx9-user1.png'),
+      image2: require('./assets/zx9-user2.png'),
       image3: './assets/zx9-user3.png',
     },
     price: 4500,
@@ -109,7 +109,7 @@ export const products = [
     stripe: 'prod_OSvPIwqAGXVmlF',
     description:
       'Stream high quality sound wirelessly with minimal to no loss. The ZX7 speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.',
-    img: './assets/zx7.png',
+    img: require('./assets/zx7.png'),
     images: {
       image1: './assets/zx7-user1.png',
       image2: './assets/zx7-user2.png',
@@ -135,7 +135,7 @@ export const products = [
     stripe: 'prod_OSvQj2z9ndRQ5K',
     description:
       'Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.',
-    img: './assets/yx1.png',
+    img: require('./assets/yx1.png'),
     images: {
       image1: './assets/yx1-user1.png',
       image2: './assets/yx1-user2.png',

@@ -4,8 +4,9 @@ import styled from 'styled-components/native'
 // import { shop } from '../../data'
 import yx1 from '../../assets/yx1.png'
 import { AntDesign } from '@expo/vector-icons'
-export const Shop = ({ name, img }) => {
-  console.log(img)
+export const Shop = ({ item }) => {
+  // console.log(img)
+  const { name, img } = item
   return (
     <Card>
       <Icon source={img}></Icon>
