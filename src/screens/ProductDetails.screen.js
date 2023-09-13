@@ -9,6 +9,7 @@ import {
   SmallText,
 } from '../components/SingleProduct'
 import { formatPrice } from '../utils/Price'
+import { useGlobalContext } from '../Hooks/context'
 
 const ProductDetails = ({ route, navigation }) => {
   const { item } = route.params
@@ -23,7 +24,11 @@ const ProductDetails = ({ route, navigation }) => {
     item: items,
     images,
   } = item
-  console.log(img)
+  const { allProducts } = useGlobalContext()
+
+  const products = allProducts.filter((item) => item.name !== name)
+  console.log(products)
+
   return (
     <Container>
       <ScrollView>

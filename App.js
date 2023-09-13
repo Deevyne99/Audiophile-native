@@ -12,45 +12,48 @@ import { Products } from './src/screens/Products.screen'
 import { Cart } from './src/screens/Cart.screen'
 import { CheckOut } from './src/screens/CheckOut.screen'
 import { ProductNavigator } from './src/components/routes/ProductsNavigator'
+import { AppProvider } from './src/Hooks/context'
 
 const Tab = createBottomTabNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <SafeArea>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconName
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <SafeArea>
+            <Tab.Navigator
+              screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                  let iconName
 
-                if (route.name === 'Home') {
-                  iconName = 'md-home'
-                } else if (route.name === 'Products') {
-                  iconName = 'grid'
-                } else if (route.name === 'Cart') {
-                  iconName = 'cart'
-                } else if (route.name === 'Checkout') {
-                  iconName = 'card'
-                }
+                  if (route.name === 'Home') {
+                    iconName = 'md-home'
+                  } else if (route.name === 'Products') {
+                    iconName = 'grid'
+                  } else if (route.name === 'Cart') {
+                    iconName = 'cart'
+                  } else if (route.name === 'Checkout') {
+                    iconName = 'card'
+                  }
 
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />
-              },
-              tabBarActiveTintColor: '#D87D4A',
-              tabBarInactiveTintColor: 'gray',
-              headerShown: false,
-            })}
-          >
-            <Tab.Screen name='Home' component={Home} />
-            <Tab.Screen name='Products' component={ProductNavigator} />
-            {/* <Tab.Screen name={`${'divine'}`} component={Product} /> */}
-            <Tab.Screen name='Cart' component={Cart} />
-            <Tab.Screen name='Checkout' component={CheckOut} />
-            {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
-          </Tab.Navigator>
-        </SafeArea>
-      </ThemeProvider>
+                  // You can return any component that you like here!
+                  return <Ionicons name={iconName} size={size} color={color} />
+                },
+                tabBarActiveTintColor: '#D87D4A',
+                tabBarInactiveTintColor: 'gray',
+                headerShown: false,
+              })}
+            >
+              <Tab.Screen name='Home' component={Home} />
+              <Tab.Screen name='Products' component={ProductNavigator} />
+              {/* <Tab.Screen name={`${'divine'}`} component={Product} /> */}
+              <Tab.Screen name='Cart' component={Cart} />
+              <Tab.Screen name='Checkout' component={CheckOut} />
+              {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
+            </Tab.Navigator>
+          </SafeArea>
+        </ThemeProvider>
+      </AppProvider>
     </NavigationContainer>
   )
 }
