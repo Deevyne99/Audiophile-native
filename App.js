@@ -7,10 +7,11 @@ import { ThemeProvider } from 'styled-components/native'
 import styled from 'styled-components/native'
 import { theme } from './src/styleGuide'
 import { Home } from './src/screens/Home.screen'
-import { Products } from './src/screens/products.screen'
-import { Product } from './src/screens/product.screen'
+import { Products } from './src/screens/Products.screen'
+// import { Product } from './src/screens/product.screen'
 import { Cart } from './src/screens/Cart.screen'
 import { CheckOut } from './src/screens/CheckOut.screen'
+import { ProductNavigator } from './src/components/routes/ProductsNavigator'
 
 const Tab = createBottomTabNavigator()
 export default function App() {
@@ -38,10 +39,11 @@ export default function App() {
               },
               tabBarActiveTintColor: '#D87D4A',
               tabBarInactiveTintColor: 'gray',
+              headerShown: false,
             })}
           >
             <Tab.Screen name='Home' component={Home} />
-            <Tab.Screen name='Products' component={Products} />
+            <Tab.Screen name='Products' component={ProductNavigator} />
             {/* <Tab.Screen name={`${'divine'}`} component={Product} /> */}
             <Tab.Screen name='Cart' component={Cart} />
             <Tab.Screen name='Checkout' component={CheckOut} />

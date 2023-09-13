@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { SingleProduct } from '../components/SingleProduct'
 import { products, shop } from '../../data'
@@ -7,13 +7,15 @@ import { ShopContainer } from './Home.screen'
 
 // import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors'
 
-export const Products = () => {
+export const Products = ({ navigation }) => {
   return (
     <View style={{ backgroundColor: 'white', flex: 1 }}>
       {/* <Text>Products page</Text> */}
       <FlatList
         data={products}
-        renderItem={SingleProduct}
+        renderItem={({ item, index }) => (
+          <SingleProduct item={item} key={index} />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>

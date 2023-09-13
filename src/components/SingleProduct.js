@@ -1,18 +1,21 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styled } from 'styled-components/native'
+
 // import img from '../../assets/earpod-mobile.png'
 export const SingleProduct = ({ item }) => {
+  const navigation = useNavigation()
   const { name, description, img } = item
   return (
     <ProductContainer>
       <ImageContainer>
-        <ProductImage source={img}></ProductImage>
+        <ProductImage source={item.img}></ProductImage>
       </ImageContainer>
       <SmallText>NEW PRODUCT</SmallText>
-      <NameText>{name}</NameText>
-      <DescText>{description}</DescText>
-      <Button>
+      <NameText>{item.name}</NameText>
+      <DescText>{item.description}</DescText>
+      <Button onPress={() => navigation.navigate('Details', { item })}>
         <ButtonLabel>see Product</ButtonLabel>
       </Button>
     </ProductContainer>
@@ -22,11 +25,12 @@ const ButtonLabel = styled(Text)`
   text-transform: uppercase;
   color: white;
 `
-const SmallText = styled(Text)`
+export const SmallText = styled(Text)`
   letter-spacing: 10px;
   margin-top: ${(props) => props.theme.sizes[2]};
   color: ${(props) => props.theme.colors.orange};
   font-size: 10px;
+  text-transform: uppercase;
 `
 export const NameText = styled(Text)`
   margin-top: ${(props) => props.theme.sizes[1]};
@@ -49,7 +53,7 @@ const ProductContainer = styled(View)`
   background-color: white;
 `
 
-const ProductImage = styled(Image)`
+export const ProductImage = styled(Image)`
   width: 280px;
   justify-content: center;
   align-items: center;
@@ -57,7 +61,7 @@ const ProductImage = styled(Image)`
   margin: 0 auto;
 `
 
-const ImageContainer = styled(View)`
+export const ImageContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.gray};
   height: 400px;
   width: 350px;
