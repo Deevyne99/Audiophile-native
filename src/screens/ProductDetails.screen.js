@@ -10,8 +10,10 @@ import {
 } from '../components/SingleProduct'
 import { formatPrice } from '../utils/Price'
 import { useGlobalContext } from '../Hooks/context'
+import { useNavigation } from '@react-navigation/native'
 
-const ProductDetails = ({ route, navigation }) => {
+const ProductDetails = ({ route }) => {
+  const navigation = useNavigation()
   const { item } = route.params
   const {
     name,
@@ -79,6 +81,39 @@ const ProductDetails = ({ route, navigation }) => {
             <SampleImage source={images.image2}></SampleImage>
             <SampleImage source={images.image3}></SampleImage>
           </ImageBox>
+          <ScrollView
+            style={{}}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            <View>
+              {products
+                .map((item) => {
+                  const { name, img, id } = item
+                  return (
+                    <View
+                      key={id}
+                      style={{
+                        justifyContent: 'center',
+                        marginTop: 30,
+                      }}
+                    >
+                      <SmallContainer>
+                        <SmallImage source={img}></SmallImage>
+                      </SmallContainer>
+                      <NameText style={{ width: 200 }}>{name}</NameText>
+                      <CartButton
+                        style={{ width: 120, marginTop: 8 }}
+                        onPress={() => navigation.navigate('Details', { item })}
+                      >
+                        <CartLabel>SEE PRODUCT</CartLabel>
+                      </CartButton>
+                    </View>
+                  )
+                })
+                .slice(0, 3)}
+            </View>
+          </ScrollView>
         </WrappedContainer>
       </ScrollView>
     </Container>
@@ -135,6 +170,7 @@ const CartButton = styled(TouchableOpacity)`
   color: white;
   justify-content: center;
   padding: 10px;
+  margin: 0 auto;
 `
 const CartLabel = styled(Text)`
   color: white;
@@ -162,4 +198,20 @@ const SampleImage = styled(Image)`
 const ImageBox = styled(View)`
   margin-top: 24px;
   gap: 20px;
+`
+export const SmallImage = styled(Image)`
+  width: 270px;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  margin: 0 auto;
+`
+
+export const SmallContainer = styled(View)`
+  background-color: ${(props) => props.theme.colors.gray};
+  height: 350px;
+  width: 350px;
+  justify-content: center;
+  align-itmens: center;
+  border-radius: 8px;
 `

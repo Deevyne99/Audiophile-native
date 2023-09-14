@@ -33,6 +33,7 @@ export const SmallText = styled(Text)`
   text-transform: uppercase;
 `
 export const NameText = styled(Text)`
+  margin: 0 auto;
   margin-top: ${(props) => props.theme.sizes[1]};
   font-weight: bold;
   font-size: 24px;
