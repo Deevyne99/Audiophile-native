@@ -13,9 +13,12 @@ import { useGlobalContext } from '../Hooks/context'
 import { useNavigation } from '@react-navigation/native'
 
 const ProductDetails = ({ route }) => {
+  const { allProducts, increaseAmount, decreaseAmount, amount, AddToCart } =
+    useGlobalContext()
   const navigation = useNavigation()
   const { item } = route.params
   const {
+    id,
     name,
     img,
     description,
@@ -26,10 +29,9 @@ const ProductDetails = ({ route }) => {
     item: items,
     images,
   } = item
-  const { allProducts } = useGlobalContext()
 
   const products = allProducts.filter((item) => item.name !== name)
-  console.log(products)
+  // console.log(products)
 
   return (
     <Container>
@@ -44,15 +46,15 @@ const ProductDetails = ({ route }) => {
           <PriceText>{formatPrice(price)}</PriceText>
           <ButtonContainer>
             <ButtonWrapper>
-              <Button>
+              <Button onPress={decreaseAmount}>
                 <ButtonLabel>-</ButtonLabel>
               </Button>
-              <AmountLabel>1</AmountLabel>
-              <Button>
+              <AmountLabel>{amount}</AmountLabel>
+              <Button onPress={increaseAmount}>
                 <ButtonLabel>+</ButtonLabel>
               </Button>
             </ButtonWrapper>
-            <CartButton>
+            <CartButton onPress={() => AddToCart(id, item, amount)}>
               <CartLabel>Add to cart</CartLabel>
             </CartButton>
           </ButtonContainer>
