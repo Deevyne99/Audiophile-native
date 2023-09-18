@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'
 import styled from 'styled-components/native'
 import {
@@ -10,11 +10,15 @@ import {
 } from '../components/SingleProduct'
 import { formatPrice } from '../utils/Price'
 import { useGlobalContext } from '../Hooks/context'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useScrollToTop } from '@react-navigation/native'
 
 const ProductDetails = ({ route }) => {
   const { allProducts, increaseAmount, decreaseAmount, amount, AddToCart } =
     useGlobalContext()
+  const ref = useRef(null)
+
+  useScrollToTop(ref)
+
   const navigation = useNavigation()
   const { item } = route.params
   const {
@@ -34,7 +38,7 @@ const ProductDetails = ({ route }) => {
   // console.log(products)
 
   return (
-    <Container>
+    <Container ref={ref}>
       <ScrollView>
         <WrappedContainer>
           <ImageContainer>
@@ -106,7 +110,9 @@ const ProductDetails = ({ route }) => {
                       <NameText style={{ width: 200 }}>{name}</NameText>
                       <CartButton
                         style={{ width: 120, marginTop: 8 }}
-                        onPress={() => navigation.navigate('Details', { item })}
+                        onPress={() => {
+                          navigation.navigate('Details', { item })
+                        }}
                       >
                         <CartLabel>SEE PRODUCT</CartLabel>
                       </CartButton>
@@ -140,7 +146,7 @@ const PriceText = styled(Text)`
   font-weight: bold;
   font-size: 18px;
 `
-const Button = styled(TouchableOpacity)`
+export const Button = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.gray};
   padding: 10px;
   justify-content: center;
@@ -150,19 +156,19 @@ const ButtonContainer = styled(View)`
   gap: 16px;
   margin-top: 16px;
 `
-const ButtonLabel = styled(Text)`
+export const ButtonLabel = styled(Text)`
   background-color: ${(props) => props.theme.colors.gray};
   font-weight: bold;
   justify-content: center;
   /* padding: 10px; */
 `
-const AmountLabel = styled(Text)`
+export const AmountLabel = styled(Text)`
   background-color: ${(props) => props.theme.colors.gray};
   font-weight: bold;
   justify-content: center;
   padding: 10px;
 `
-const ButtonWrapper = styled(View)`
+export const ButtonWrapper = styled(View)`
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -212,7 +218,7 @@ export const SmallImage = styled(Image)`
 export const SmallContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.gray};
   height: 350px;
-  width: 350px;
+  width: 320px;
   justify-content: center;
   align-itmens: center;
   border-radius: 8px;

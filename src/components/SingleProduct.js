@@ -65,7 +65,7 @@ export const ProductImage = styled(Image)`
 export const ImageContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.gray};
   height: 400px;
-  width: 350px;
+  width: 320px;
   justify-content: center;
   align-itmens: center;
 `
