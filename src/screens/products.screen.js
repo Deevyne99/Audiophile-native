@@ -5,13 +5,21 @@ import { products, shop } from '../../data'
 import { Shop } from '../components/Shop'
 import { ShopContainer } from './Home.screen'
 import { useGlobalContext } from '../Hooks/context'
-
+import { useEffect, useRef } from 'react'
+import { useScrollToTop } from '@react-navigation/native'
 // import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors'
 
 export const Products = ({ navigation }) => {
   const { allProducts } = useGlobalContext()
+  const ref = useRef(null)
+
+  useScrollToTop(
+    useRef({
+      scrollToTop: () => ref.current?.scrollTo({ y: 0 }),
+    })
+  )
   return (
-    <View style={{ backgroundColor: 'white', flex: 1 }}>
+    <View style={{ backgroundColor: 'white', flex: 1 }} ref={ref}>
       {/* <Text>Products page</Text> */}
       <FlatList
         data={allProducts}

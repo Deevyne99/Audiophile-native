@@ -13,6 +13,7 @@ import { Cart } from './src/screens/Cart.screen'
 import { CheckOut } from './src/screens/CheckOut.screen'
 import { ProductNavigator } from './src/components/routes/ProductsNavigator'
 import { AppProvider } from './src/Hooks/context'
+import { CheckOutNavigator } from './src/components/routes/CheckoutNavigator'
 
 const Tab = createBottomTabNavigator()
 export default function App() {
@@ -32,7 +33,7 @@ export default function App() {
                     iconName = 'grid'
                   } else if (route.name === 'Cart') {
                     iconName = 'cart'
-                  } else if (route.name === 'Checkout') {
+                  } else if (route.name === 'Checkouts') {
                     iconName = 'card'
                   }
 
@@ -48,7 +49,7 @@ export default function App() {
               <Tab.Screen name='Products' component={ProductNavigator} />
               {/* <Tab.Screen name={`${'divine'}`} component={Product} /> */}
               <Tab.Screen name='Cart' component={Cart} />
-              <Tab.Screen name='Checkout' component={CheckOut} />
+              <Tab.Screen name='Checkouts' component={CheckOutNavigator} />
               {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
             </Tab.Navigator>
           </SafeArea>

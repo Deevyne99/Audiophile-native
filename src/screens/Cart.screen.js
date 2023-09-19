@@ -10,9 +10,11 @@ import {
   ButtonLabel,
   AmountLabel,
 } from './ProductDetails.screen'
+import { useNavigation } from '@react-navigation/native'
 
 export const Cart = () => {
   const { allProducts, amount } = useGlobalContext()
+  const navigation = useNavigation()
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
       <CartWrapper>
@@ -45,7 +47,7 @@ export const Cart = () => {
             </CartContent>
           )
         })}
-        <Checkout>
+        <Checkout onPress={() => navigation.navigate('Checkout')}>
           <CheckoutLabel>Checkout</CheckoutLabel>
         </Checkout>
       </CartWrapper>
@@ -53,59 +55,59 @@ export const Cart = () => {
   )
 }
 
-const CartWrapper = styled(View)`
+export const CartWrapper = styled(View)`
   /* flex: 1; */
   padding: 16px;
   background-color: #fff;
 `
-const Header = styled(View)`
+export const Header = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   /* align-items: center; */
 `
-const Title = styled(Text)`
+export const Title = styled(Text)`
   color: #000;
   font-weight: bold;
 `
-const RemoveButton = styled(TouchableOpacity)``
-const RemoveLabel = styled(Text)`
+export const RemoveButton = styled(TouchableOpacity)``
+export const RemoveLabel = styled(Text)`
   color: #000;
   opacity: 0.5;
 `
-const CartContent = styled(View)`
+export const CartContent = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 25px;
   /* gap: 20px; */
 `
-const ProductImageContainer = styled(View)`
+export const ProductImageContainer = styled(View)`
   background-color: ${(props) => props.theme.colors.gray};
   padding: 10px;
   border-radius: 8px;
   justify-content: center;
   align-items: cneter;
 `
-const ProductImage = styled(Image)`
+export const ProductImage = styled(Image)`
   width: 70px;
   height: 70px;
 `
-const NameLabel = styled(Text)`
+export const NameLabel = styled(Text)`
   width: 120px;
 `
-const Labels = styled(View)`
+export const Labels = styled(View)`
   flex-direction: column;
   gap: 8px;
   align-items: center;
   justify-content: center;
 `
-const Checkout = styled(TouchableOpacity)`
+export const Checkout = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.orange};
   padding: 10px;
   width: 120px;
   margin: 0 auto;
   margin-top: 30px;
 `
-const CheckoutLabel = styled(Text)`
+export const CheckoutLabel = styled(Text)`
   text-align: center;
   color: #fff;
   text-transform: uppercase;
