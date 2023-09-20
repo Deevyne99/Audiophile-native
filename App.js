@@ -12,11 +12,12 @@ import { Products } from './src/screens/Products.screen'
 import { Cart } from './src/screens/Cart.screen'
 import { CheckOut } from './src/screens/CheckOut.screen'
 import { ProductNavigator } from './src/components/routes/ProductsNavigator'
-import { AppProvider } from './src/Hooks/context'
+import { AppProvider, useGlobalContext } from './src/Hooks/context'
 import { CheckOutNavigator } from './src/components/routes/CheckoutNavigator'
 
 const Tab = createBottomTabNavigator()
 export default function App() {
+  // const { total_items } = useGlobalContext()
   return (
     <NavigationContainer>
       <AppProvider>
@@ -42,6 +43,7 @@ export default function App() {
                 },
                 tabBarActiveTintColor: '#D87D4A',
                 tabBarInactiveTintColor: 'gray',
+                tabBarBadgeStyle: { color: '#fff', backgroundColor: '#D87D4A' },
                 headerShown: false,
               })}
             >

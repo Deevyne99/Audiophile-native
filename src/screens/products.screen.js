@@ -11,15 +11,9 @@ import { useScrollToTop } from '@react-navigation/native'
 
 export const Products = ({ navigation }) => {
   const { allProducts } = useGlobalContext()
-  const ref = useRef(null)
 
-  useScrollToTop(
-    useRef({
-      scrollToTop: () => ref.current?.scrollTo({ y: 0 }),
-    })
-  )
   return (
-    <View style={{ backgroundColor: 'white', flex: 1 }} ref={ref}>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
       {/* <Text>Products page</Text> */}
       <FlatList
         data={allProducts}

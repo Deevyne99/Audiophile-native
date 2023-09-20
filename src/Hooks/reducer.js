@@ -27,6 +27,21 @@ export const reducer = (state, action) => {
       }
     }
   }
-
+  if (action.type === 'CLEAR_CART_ITEMS') {
+    return { ...state, cart: [] }
+  }
+  if (action.type === 'COUNT_CART_TOTAL') {
+    const { total_items, total_amount } = state.cart.reduce(
+      (total, cartItem) => {
+        const { amount, price } = cartItem
+        console.log(amount)
+        total.total_items += amount
+        total.total_amount += price * amount
+        return total
+      },
+      { total_amount: 0, total_items: 0 }
+    )
+    return { ...state, total_items, total_amount }
+  }
   throw new Error(`No Matching "${action.type}" - action type`)
 }

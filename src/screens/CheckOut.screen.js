@@ -1,9 +1,41 @@
 import React from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { TextInput, RadioButton } from 'react-native-paper'
 import styled from 'styled-components/native'
+import { useGlobalContext } from '../Hooks/context'
+import { formatPrice } from '../utils/Price'
+import {
+  Button,
+  ButtonWrapper,
+  ButtonLabel,
+  AmountLabel,
+} from './ProductDetails.screen'
+import { Checkout, CheckoutLabel } from './Cart.screen'
+import { useNavigation } from '@react-navigation/native'
 
 export const CheckOut = () => {
+  const navigation = useNavigation()
+  const { cart, amount } = useGlobalContext()
+  if (cart.length < 1) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#fff',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 16,
+        }}
+      >
+        <Text style={{ textAlign: 'center' }}>
+          You cart is empty, click the button below to add items to your cart.
+        </Text>
+        <Checkout onPress={() => navigation.navigate('Products')}>
+          <CheckoutLabel>See products</CheckoutLabel>
+        </Checkout>
+      </View>
+    )
+  }
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
       <Wrapper>
@@ -97,6 +129,35 @@ export const CheckOut = () => {
             ></TextInput>
           </InputBox>
         </BillingContainer>
+        <BillingContainer>
+          <Heading>Summary</Heading>
+          {cart.map((items) => {
+            const { img, name, price, id } = items
+            return (
+              <CartContent key={id}>
+                <ProductImageContainer>
+                  <ProductImage source={img}></ProductImage>
+                </ProductImageContainer>
+                <Labels>
+                  <NameLabel>{name}</NameLabel>
+                  <NameLabel>{formatPrice(price)}</NameLabel>
+                </Labels>
+                <ButtonWrapper>
+                  <Button>
+                    <ButtonLabel>-</ButtonLabel>
+                  </Button>
+                  <AmountLabel>{amount}</AmountLabel>
+                  <Button>
+                    <ButtonLabel>+</ButtonLabel>
+                  </Button>
+                </ButtonWrapper>
+              </CartContent>
+            )
+          })}
+        </BillingContainer>
+        <ButtonPay>
+          <ButtonPayLabel>continue & pay </ButtonPayLabel>
+        </ButtonPay>
       </Wrapper>
     </ScrollView>
   )
@@ -119,4 +180,43 @@ const InputBox = styled(View)`
 `
 const Label = styled(Text)`
   font-weight: bold;
+`
+export const CartContent = styled(View)`
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 25px;
+  /* gap: 20px; */
+`
+export const ProductImageContainer = styled(View)`
+  background-color: ${(props) => props.theme.colors.gray};
+  padding: 10px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: cneter;
+`
+export const ProductImage = styled(Image)`
+  width: 70px;
+  height: 70px;
+`
+export const NameLabel = styled(Text)`
+  width: 120px;
+`
+export const Labels = styled(View)`
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+`
+const Heading = styled(Text)`
+  font-weight: bold;
+  font-size: 24px;
+`
+const ButtonPay = styled(TouchableOpacity)`
+  background-color: ${(props) => props.theme.colors.orange};
+  padding: 10px;
+`
+const ButtonPayLabel = styled(Text)`
+  color: #fff;
+  text-align: center;
+  text-transform: capitalize;
 `

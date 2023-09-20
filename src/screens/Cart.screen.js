@@ -13,18 +13,41 @@ import {
 import { useNavigation } from '@react-navigation/native'
 
 export const Cart = () => {
-  const { allProducts, amount } = useGlobalContext()
+  const { allProducts, amount, cart, total_items, clearCartItems } =
+    useGlobalContext()
   const navigation = useNavigation()
+
+  if (cart.length < 1) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#fff',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 16,
+        }}
+      >
+        <Text style={{ textAlign: 'center' }}>
+          You cart is empty, click the button below to add items to your cart.
+        </Text>
+        <Checkout onPress={() => navigation.navigate('Products')}>
+          <CheckoutLabel>See products</CheckoutLabel>
+        </Checkout>
+      </View>
+    )
+  }
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
       <CartWrapper>
         <Header>
-          <Title>Cart (2)</Title>
-          <RemoveButton>
+          <Title>Cart ({total_items})</Title>
+          <RemoveButton onPress={clearCartItems}>
             <RemoveLabel>Remove all</RemoveLabel>
           </RemoveButton>
         </Header>
-        {allProducts.map((items) => {
+        {cart.map((items) => {
           const { img, name, price, id } = items
           return (
             <CartContent key={id}>
@@ -103,7 +126,7 @@ export const Labels = styled(View)`
 export const Checkout = styled(TouchableOpacity)`
   background-color: ${(props) => props.theme.colors.orange};
   padding: 10px;
-  width: 120px;
+  width: 130px;
   margin: 0 auto;
   margin-top: 30px;
 `

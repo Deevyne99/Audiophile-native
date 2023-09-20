@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useState } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useEffect,
+} from 'react'
 import { View } from 'react-native'
 import { products } from '../../data'
 import { reducer } from './reducer'
@@ -31,6 +37,13 @@ export const AppProvider = ({ children }) => {
     setAmount(1)
   }
 
+  const clearCartItems = () => {
+    dispatch({ type: 'CLEAR_CART_ITEMS' })
+  }
+  useEffect(() => {
+    dispatch({ type: 'COUNT_CART_TOTAL' })
+    //  localStorage.setItem('cart', JSON.stringify(state.cart))
+  }, [state.cart])
   return (
     <AppContext.Provider
       value={{
@@ -39,6 +52,7 @@ export const AppProvider = ({ children }) => {
         decreaseAmount,
         AddToCart,
         amount,
+        clearCartItems,
       }}
     >
       {children}
