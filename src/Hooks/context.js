@@ -37,6 +37,13 @@ export const AppProvider = ({ children }) => {
     setAmount(1)
   }
 
+  const increaseCart = (id) => {
+    dispatch({ type: 'INCREASE_AMOUNT', payload: id })
+  }
+  const decreaseCart = (id) => {
+    dispatch({ type: 'DECREASE_AMOUNT', payload: id })
+  }
+
   const clearCartItems = () => {
     dispatch({ type: 'CLEAR_CART_ITEMS' })
   }
@@ -53,6 +60,8 @@ export const AppProvider = ({ children }) => {
         AddToCart,
         amount,
         clearCartItems,
+        increaseCart,
+        decreaseCart,
       }}
     >
       {children}

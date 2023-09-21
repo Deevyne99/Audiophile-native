@@ -13,8 +13,14 @@ import {
 import { useNavigation } from '@react-navigation/native'
 
 export const Cart = () => {
-  const { allProducts, amount, cart, total_items, clearCartItems } =
-    useGlobalContext()
+  const {
+    allProducts,
+    cart,
+    total_items,
+    clearCartItems,
+    increaseCart,
+    decreaseCart,
+  } = useGlobalContext()
   const navigation = useNavigation()
 
   if (cart.length < 1) {
@@ -48,7 +54,7 @@ export const Cart = () => {
           </RemoveButton>
         </Header>
         {cart.map((items) => {
-          const { img, name, price, id } = items
+          const { img, name, price, id, amount } = items
           return (
             <CartContent key={id}>
               <ProductImageContainer>
@@ -59,11 +65,11 @@ export const Cart = () => {
                 <NameLabel>{formatPrice(price)}</NameLabel>
               </Labels>
               <ButtonWrapper>
-                <Button>
+                <Button onPress={() => decreaseCart(id)}>
                   <ButtonLabel>-</ButtonLabel>
                 </Button>
                 <AmountLabel>{amount}</AmountLabel>
-                <Button>
+                <Button onPress={() => increaseCart(id)}>
                   <ButtonLabel>+</ButtonLabel>
                 </Button>
               </ButtonWrapper>

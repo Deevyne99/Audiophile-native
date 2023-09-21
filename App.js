@@ -34,7 +34,7 @@ export default function App() {
                     iconName = 'grid'
                   } else if (route.name === 'Cart') {
                     iconName = 'cart'
-                  } else if (route.name === 'Checkouts') {
+                  } else if (route.name === 'Checkout') {
                     iconName = 'card'
                   }
 
@@ -45,13 +45,14 @@ export default function App() {
                 tabBarInactiveTintColor: 'gray',
                 tabBarBadgeStyle: { color: '#fff', backgroundColor: '#D87D4A' },
                 headerShown: false,
+                tabBarLabelStyle: { textTransform: 'capitalize' },
               })}
             >
               <Tab.Screen name='Home' component={Home} />
               <Tab.Screen name='Products' component={ProductNavigator} />
               {/* <Tab.Screen name={`${'divine'}`} component={Product} /> */}
               <Tab.Screen name='Cart' component={Cart} />
-              <Tab.Screen name='Checkouts' component={CheckOutNavigator} />
+              <Tab.Screen name='Checkout' component={CheckOutNavigator} />
               {/* <Tab.Screen name='Settings' component={SettingsScreen} /> */}
             </Tab.Navigator>
           </SafeArea>

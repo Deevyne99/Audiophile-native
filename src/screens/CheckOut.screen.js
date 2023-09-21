@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { TextInput, RadioButton } from 'react-native-paper'
 import styled from 'styled-components/native'
@@ -12,10 +12,76 @@ import {
 } from './ProductDetails.screen'
 import { Checkout, CheckoutLabel } from './Cart.screen'
 import { useNavigation } from '@react-navigation/native'
-
+const initialState = {
+  name: '',
+  email: '',
+  address: '',
+  phone: '',
+  zipCode: '',
+  city: '',
+  country: '',
+  card: '',
+  pin: '',
+}
 export const CheckOut = () => {
+  const [formValues, setFormValues] = useState(initialState)
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false)
   const navigation = useNavigation()
   const { cart, amount } = useGlobalContext()
+
+  const validate = (values) => {
+    const errors = {}
+    if (!values.name) {
+      errors.name = 'Name is required'
+    }
+    if (!values.email) {
+      errors.email = 'Email is required'
+    }
+    if (!values.phone) {
+      errors.phone = 'Phone Number is required'
+    }
+    if (!values.address) {
+      errors.address = 'address is required'
+    }
+    if (!values.zipCode) {
+      errors.zipCode = 'zipcode is required'
+    }
+    if (!values.city) {
+      errors.city = 'city is required'
+    }
+    if (!values.country) {
+      errors.country = 'country is required'
+    }
+
+    if (!values.card) {
+      errors.card = 'card is required'
+      // setThankYou(false)
+    }
+    if (!values.pin) {
+      errors.pin = 'pin is required'
+      // setThankYou(false)
+    }
+
+    return errors
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormErrors(validate(formValues))
+    setIsSubmit(true)
+  }
+
+  useEffect(() => {
+    console.log(formErrors)
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues)
+    }
+  }, [formErrors, isSubmit])
   if (cart.length < 1) {
     return (
       <View
@@ -48,6 +114,8 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='Moses John'
+              onChangeText={handleChange}
+              name='name'
             ></TextInput>
           </InputBox>
           <InputBox>
@@ -57,15 +125,19 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='john@gmail.com'
+              onChangeText={handleChange}
+              name='email'
             ></TextInput>
           </InputBox>
           <InputBox>
-            <Label>Phnone Number</Label>
+            <Label>Phone Number</Label>
             <TextInput
               mode='outlined'
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='081 4815 8802'
+              onChangeText={handleChange}
+              name='phone'
             ></TextInput>
           </InputBox>
         </BillingContainer>
@@ -78,6 +150,8 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='24 John snow street'
+              onChangeText={handleChange}
+              name='address'
             ></TextInput>
           </InputBox>
           <InputBox>
@@ -87,6 +161,7 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='22550'
+              name='zipcode'
             ></TextInput>
           </InputBox>
           <InputBox>
@@ -96,6 +171,8 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='London'
+              onChangeText={handleChange}
+              name='city'
             ></TextInput>
           </InputBox>
           <InputBox>
@@ -105,6 +182,8 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='United Kingdom'
+              onChangeText={handleChange}
+              name='country'
             ></TextInput>
           </InputBox>
         </BillingContainer>
@@ -117,6 +196,8 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='john@gmail.com'
+              onChangeText={handleChange}
+              name='card'
             ></TextInput>
           </InputBox>
           <InputBox>
@@ -126,13 +207,15 @@ export const CheckOut = () => {
               outlineColor='#CFCFCF'
               activeOutlineColor='#CFCFCF'
               placeholder='john@gmail.com'
+              onChangeText={handleChange}
+              name='pin'
             ></TextInput>
           </InputBox>
         </BillingContainer>
         <BillingContainer>
           <Heading>Summary</Heading>
           {cart.map((items) => {
-            const { img, name, price, id } = items
+            const { img, name, price, id, amount } = items
             return (
               <CartContent key={id}>
                 <ProductImageContainer>
@@ -142,15 +225,7 @@ export const CheckOut = () => {
                   <NameLabel>{name}</NameLabel>
                   <NameLabel>{formatPrice(price)}</NameLabel>
                 </Labels>
-                <ButtonWrapper>
-                  <Button>
-                    <ButtonLabel>-</ButtonLabel>
-                  </Button>
-                  <AmountLabel>{amount}</AmountLabel>
-                  <Button>
-                    <ButtonLabel>+</ButtonLabel>
-                  </Button>
-                </ButtonWrapper>
+                <Label>x{amount}</Label>
               </CartContent>
             )
           })}
@@ -185,6 +260,7 @@ export const CartContent = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 25px;
+  align-items: center;
   /* gap: 20px; */
 `
 export const ProductImageContainer = styled(View)`

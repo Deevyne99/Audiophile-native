@@ -14,7 +14,7 @@ export const CheckOutNavigator = () => {
   return (
     <CheckoutStack.Navigator>
       <CheckoutStack.Screen
-        name='Checkout'
+        name='Checkout '
         component={CheckOut}
       ></CheckoutStack.Screen>
     </CheckoutStack.Navigator>

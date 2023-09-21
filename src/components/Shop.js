@@ -4,14 +4,17 @@ import styled from 'styled-components/native'
 // import { shop } from '../../data'
 import yx1 from '../../assets/yx1.png'
 import { AntDesign } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+// import { useGlobalContext } from '../Hooks/context'
+
 export const Shop = ({ item }) => {
-  // console.log(img)
+  const navigation = useNavigation()
   const { name, img } = item
   return (
     <Card>
       <Icon source={img}></Icon>
       <TextLabel>{name}</TextLabel>
-      <ShopButton>
+      <ShopButton onPress={() => navigation.navigate('Products')}>
         <ButtonLabel>shop</ButtonLabel>
         <IconAnt name='right' size={16} color='black' />
       </ShopButton>

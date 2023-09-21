@@ -43,5 +43,30 @@ export const reducer = (state, action) => {
     )
     return { ...state, total_items, total_amount }
   }
+  if (action.type === 'INCREASE_AMOUNT') {
+    let updatedProduct = state.cart.map((item) => {
+      if (item.id === action.payload) {
+        let incAmount = item.amount + 1
+        return { ...item, amount: incAmount }
+      } else {
+        return item
+      }
+    })
+    return { ...state, cart: updatedProduct }
+  }
+  if (action.type === 'DECREASE_AMOUNT') {
+    let updatedProduct = state.cart.map((item) => {
+      if (item.id === action.payload) {
+        let decAmount = item.amount - 1
+        if (decAmount <= 1) {
+          decAmount = 1
+        }
+        return { ...item, amount: decAmount }
+      } else {
+        return item
+      }
+    })
+    return { ...state, cart: updatedProduct }
+  }
   throw new Error(`No Matching "${action.type}" - action type`)
 }
